@@ -17,7 +17,8 @@
 
 let nums = [0, 1, 0, 3, 12];
 
-nums = [1, 0, 0, 3, 12, 0];
+// nums = [1, 0, 0, 0, 12, 0];
+nums = [1, 3, 2, 5, 12, 0];
 
 // Using two pointer approach
 function moveZeros(nums) {
@@ -26,11 +27,10 @@ function moveZeros(nums) {
   let left = 0;
   let right = 0;
 
-  while (right < nums.length) {
+  while (right < nums.length && left < nums.length) {
     if (nums[right] !== 0) {
-      let temp = nums[right];
-      nums[right] = nums[left];
-      nums[left] = temp;
+      // Swap
+      if (right !== left) [nums[right], nums[left]] = [nums[left], nums[right]];
 
       left++;
     }

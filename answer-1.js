@@ -18,7 +18,7 @@
 let nums = [0, 1, 0, 3, 12];
 
 // nums = [1, 0, 0, 0, 12, 0];
-nums = [1, 3, 2, 5, 12, 0];
+// nums = [1, 3, 2, 5, 12, 0];
 
 // Using two pointer approach
 function moveZeros(nums) {

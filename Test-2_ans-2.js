@@ -20,3 +20,83 @@
 // The number of nodes in each linked list is in the range [1, 100].
 // 0 <= Node.val <= 9
 // It is guaranteed that the list represents a number that does not have leading zeros.
+
+//================ Creating Linked list Class ========================
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.size = 0;
+  }
+
+  add(data) {
+    let node = new Node(data);
+    let curr;
+    if (this.head === null) {
+      this.head = node;
+    } else {
+      curr = this.head;
+
+      while (curr.next) {
+        curr = curr.next;
+      }
+
+      curr.next = node;
+    }
+    this.size++;
+  }
+}
+
+let l1 = new LinkedList();
+let l2 = new LinkedList();
+
+[9, 9, 9, 9, 9, 9, 9].forEach((e) => l1.add(e));
+[9, 9, 9, 9].forEach((e) => l2.add(e));
+
+// =======================Creating function to add nodes of two linked lis=======================
+
+function addTwoLists(l1, l2) {
+  let dummyList = new LinkedList();
+
+  let carry = 0;
+
+  while (l1 || l2) {
+    let x = l1 !== null ? l1.data : 0;
+    let y = l2 !== null ? l2.data : 0;
+    let sum = x + y + carry;
+    carry = Math.floor(sum / 10);
+    dummyList.add(sum % 10);
+
+    if (l1) l1 = l1.next;
+
+    if (l2) l2 = l2.next;
+  }
+
+  if (carry > 0) dummyList.add(carry);
+
+  return dummyList.head;
+}
+
+// Print list function
+function printList(list) {
+  console.log("list:", list);
+  let curr = list;
+  let str = "";
+
+  while (curr) {
+    str += curr.data + "->";
+    curr = curr.next;
+  }
+  str += "null";
+
+  return str;
+}
+
+let list = addTwoLists(l1.head, l2.head);
+console.log(printList(list));
